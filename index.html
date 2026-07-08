@@ -3,65 +3,161 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>各種始業前点検リンク</title>
+  <title>【村上組】点検表リンク集</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
       margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      background: #f5f7fb;
-      color: #222;
+      background: #f6f8fc;
+      color: #1f2937;
     }
-    .container {
-      width: min(90%, 560px);
-      background: white;
-      padding: 32px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
     }
     h1 {
-      margin-top: 0;
-      font-size: 1.6rem;
+      text-align: center;
+      margin: 0 0 12px;
+      font-size: 2rem;
     }
-    p {
-      color: #666;
-      margin-bottom: 24px;
+    .lead {
+      text-align: center;
+      margin: 0 0 28px;
+      color: #4b5563;
     }
-    .links {
+    .grid {
       display: grid;
-      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
     }
-    a.link {
-      display: block;
-      padding: 14px 16px;
-      background: #eef3ff;
-      color: #1d4ed8;
+    .card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0,0,0,.08);
+      overflow: hidden;
       text-decoration: none;
-      border-radius: 12px;
-      font-weight: 600;
-      transition: 0.2s;
+      color: inherit;
+      transition: transform .15s ease, box-shadow .15s ease;
+      border: 1px solid #e5e7eb;
     }
-    a.link:hover {
-      background: #dbe7ff;
-      transform: translateY(-1px);
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(0,0,0,.12);
+    }
+    .thumb {
+      aspect-ratio: 4 / 3;
+      background: #eef2f7;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      background: #fff;
+    }
+    .content {
+      padding: 16px 16px 18px;
+    }
+    .title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin: 0 0 8px;
+    }
+    .desc {
+      margin: 0;
+      color: #4b5563;
+      font-size: .95rem;
+      line-height: 1.6;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 10px 14px;
+      background: #0f3a66;
+      color: #fff;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: .95rem;
     }
   </style>
 </head>
 <body>
-  <main class="container">
-    <h1>各種始業前点検リンク</h1>
-    <p>よく使うページへすぐ飛べます。</p>
+  <main class="wrap">
+    <h1>【村上組】点検表リンク集</h1>
+    <p class="lead">各機器の画像を押すと、点検表ページに移動します。</p>
 
-    <div class="links">
-      <a class="link" href="https://www.arch-dx.com/stock2/inspection/record/start/3fe99b4f-28ef-4bf6-9d6a-03b81efb4cbc" target="_blank" rel="noopener noreferrer">ハイウォッシャー（コールドボックス）</a>
-      <a class="link" href="https://www.arch-dx.com/stock2/inspection/record/start/1a34ffca-e570-4de8-82f3-af0476daf83f" target="_blank" rel="noopener noreferrer">溶接機No.3</a>
-      <a class="link" href="https://www.arch-dx.com/stock2/inspection/record/start/b2e83a51-fb7c-4395-aab9-3c20ce87abe9" target="_blank" rel="noopener noreferrer">テラスター用No.3</a>
-      <a class="link" href="https://www.arch-dx.com/stock2/inspection/record/start/ff0a1a04-87ba-4406-97ae-24b6b1637fec" target="_blank" rel="noopener noreferrer">テラスター用No.4</a>
-      <a class="link" href="https://www.arch-dx.com/stock2/inspection/record/start/64c856b1-69c8-431c-be89-227cf2046e35" target="_blank" rel="noopener noreferrer">25kVA（コールドボックス）</a>
-      <a class="link" href="https://www.arch-dx.com/stock2/inspection/record/start/68c51055-88fb-461a-a2d6-f9ecc7f78143" target="_blank" rel="noopener noreferrer">コールドボックス地山点検表</a>   
-    </div>
+    <section class="grid">
+      <a class="card" href="https://www.arch-dx.com/stock2/inspection/record/start/3fe99b4f-28ef-4bf6-9d6a-03b81efb4cbc" target="_blank" rel="noopener noreferrer">
+        <div class="thumb">
+          <img src="images/high_washer.png" alt="ハイウォッシャー（コールドボックス）">
+        </div>
+        <div class="content">
+          <div class="title">ハイウォッシャー（コールドボックス）</div>
+          <p class="desc">コールドボックス高圧洗浄機の点検表ページです。</p>
+          <span class="btn">点検表を開く</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://www.arch-dx.com/stock2/inspection/record/start/1a34ffca-e570-4de8-82f3-af0476daf83f" target="_blank" rel="noopener noreferrer">
+        <div class="thumb">
+          <img src="images/welding.png" alt="溶接機No.3">
+        </div>
+        <div class="content">
+          <div class="title">溶接機No.3</div>
+          <p class="desc">エンジン式溶接機の点検表ページです。</p>
+          <span class="btn">点検表を開く</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://www.arch-dx.com/stock2/inspection/record/start/b2e83a51-fb7c-4395-aab9-3c20ce87abe9" target="_blank" rel="noopener noreferrer">
+        <div class="thumb">
+          <img src="images/terasuta.png" alt="テラスター用No.3">
+        </div>
+        <div class="content">
+          <div class="title">テラスター用No.3</div>
+          <p class="desc">テラスター（照明機）No.3用の点検表ページです。</p>
+          <span class="btn">点検表を開く</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://www.arch-dx.com/stock2/inspection/record/start/ff0a1a04-87ba-4406-97ae-24b6b1637fec" target="_blank" rel="noopener noreferrer">
+        <div class="thumb">
+          <img src="images/terasuta.png" alt="テラスター用No.4">
+        </div>
+        <div class="content">
+          <div class="title">テラスター用No.4</div>
+          <p class="desc">テラスター（照明機）No.4用の点検表ページです。</p>
+          <span class="btn">点検表を開く</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://www.arch-dx.com/stock2/inspection/record/start/64c856b1-69c8-431c-be89-227cf2046e35" target="_blank" rel="noopener noreferrer">
+        <div class="thumb">
+          <img src="images/25kva.png" alt="25kVA（コールドボックス）">
+        </div>
+        <div class="content">
+          <div class="title">25kVA（コールドボックス）</div>
+          <p class="desc">コールドボックス25kVA発電機用の点検表ページですです。</p>
+          <span class="btn">点検表を開く</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://www.arch-dx.com/stock2/inspection/record/start/68c51055-88fb-461a-a2d6-f9ecc7f78143" target="_blank" rel="noopener noreferrer">
+        <div class="thumb">
+          <img src="images/jiyama.png" alt="コールドボックス地山点検表">
+        </div>
+        <div class="content">
+          <div class="title">コールドボックス地山点検表</div>
+          <p class="desc">コールドボックス工法における地山点検表のページです。</p>
+          <span class="btn">点検表を開く</span>
+        </div>
+      </a>
+    </section>
   </main>
 </body>
 </html>
