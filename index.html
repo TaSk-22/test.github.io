@@ -2,237 +2,337 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>【村上組】点検表リンク集</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>点検記録リンク集</title>
   <style>
     :root {
-      --bg: #f4f7fb;
+      --bg: #f6f8fc;
       --card: #ffffff;
-      --text: #0f172a;
-      --muted: #4b5563;
-      --border: #e5e7eb;
+      --text: #132238;
+      --muted: #5b677a;
+      --border: #e4e9f2;
       --brand: #0f3a66;
-      --brand-2: #144b82;
-      --shadow: 0 8px 24px rgba(15, 23, 42, .08);
-      --radius: 18px;
+      --brand-2: #174e86;
+      --pending-bg: #fff6db;
+      --pending-text: #9a6700;
+      --done-bg: #e8f7ee;
+      --done-text: #157347;
+      --stop-bg: #eef2f7;
+      --stop-text: #5b677a;
     }
+
     * { box-sizing: border-box; }
-    html, body { height: 100%; 
+
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #fbfcfe 0%, var(--bg) 100%);
       color: var(--text);
-      background:
-        radial-gradient(circle at top, #ffffff 0%, #f4f7fb 55%, #eef3f9 100%);
     }
+
     .wrap {
-      max-width: 1180px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 18px 14px 22px;
+      padding: 18px 14px 26px;
     }
+
     .hero {
       text-align: center;
-      margin-bottom: 14px;
+      padding: 10px 8px 14px;
     }
+
     .hero h1 {
       margin: 0;
-      font-size: clamp(1.4rem, 4.6vw, 2.4rem);
-      letter-spacing: .04em;
+      font-size: clamp(1.35rem, 2.6vw, 2.1rem);
+      letter-spacing: 0.02em;
       line-height: 1.2;
     }
+
     .hero p {
-      margin: 8px 0 0;
-      font-size: clamp(.82rem, 2.8vw, .98rem);
+      margin: 10px 0 0;
       color: var(--muted);
+      font-size: clamp(0.92rem, 1.9vw, 1rem);
       line-height: 1.5;
     }
+
     .grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
     }
+
     .card {
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
-      color: inherit;
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: 18px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
       overflow: hidden;
-      box-shadow: var(--shadow);
+      text-decoration: none;
+      color: inherit;
       min-height: 100%;
-      transition: transform .15s ease, box-shadow .15s ease;
-      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
+      transition: transform .16s ease, box-shadow .16s ease;
     }
-    .card:active { transform: scale(.99); }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
+    }
+
     .thumb {
       aspect-ratio: 4 / 3;
-      background: linear-gradient(180deg, #f8fafc, #eef2f7);
+      background: #f3f5fa;
       display: grid;
       place-items: center;
       padding: 8px;
+      overflow: hidden;
     }
+
     .thumb img {
       width: 100%;
       height: 100%;
       object-fit: contain;
       display: block;
-      filter: drop-shadow(0 10px 14px rgba(0,0,0,.08));
     }
+
     .content {
+      padding: 12px 12px 14px;
       display: flex;
       flex-direction: column;
-      gap: 7px;
-      padding: 10px 10px 12px;
+      gap: 10px;
+      flex: 1;
     }
+
+    .topline {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
     .title {
       margin: 0;
-      font-size: clamp(.92rem, 2.9vw, 1.08rem);
-      line-height: 1.25;
+      font-size: clamp(1rem, 1.8vw, 1.12rem);
+      line-height: 1.35;
       font-weight: 800;
-      letter-spacing: .01em;
-      min-height: 2.5em;
+      letter-spacing: 0.01em;
     }
+
+    .status {
+      flex: 0 0 auto;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      line-height: 1;
+      font-weight: 700;
+      white-space: nowrap;
+      border: 1px solid transparent;
+    }
+
+    .status.is-loading {
+      background: #eef4ff;
+      color: #2c5aa0;
+      border-color: #d7e4ff;
+    }
+
+    .status.is-pending {
+      background: var(--pending-bg);
+      color: var(--pending-text);
+      border-color: #f1d58b;
+    }
+
+    .status.is-done {
+      background: var(--done-bg);
+      color: var(--done-text);
+      border-color: #bde9cd;
+    }
+
+    .status.is-stop {
+      background: var(--stop-bg);
+      color: var(--stop-text);
+      border-color: #d8dfea;
+    }
+
     .desc {
       margin: 0;
-      font-size: clamp(.76rem, 2.4vw, .93rem);
-      line-height: 1.45;
       color: var(--muted);
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      min-height: 4.3em;
+      font-size: 0.93rem;
+      line-height: 1.55;
+      min-height: 3.1em;
     }
+
     .btn {
       margin-top: auto;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      min-height: 38px;
-      padding: 0 12px;
-      border-radius: 10px;
+      padding: 11px 14px;
+      border-radius: 12px;
       background: linear-gradient(180deg, var(--brand-2), var(--brand));
       color: #fff;
-      font-size: clamp(.78rem, 2.5vw, .92rem);
       font-weight: 800;
-      letter-spacing: .01em;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.14);
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      text-align: center;
     }
-    .note {
-      margin-top: 12px;
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(229,231,235,.9);
+
+    .footnote {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 10px 12px;
+      background: rgba(255,255,255,0.85);
       color: var(--muted);
-      font-size: .82rem;
-      line-height: 1.5;
-      box-shadow: 0 4px 16px rgba(15,23,42,.04);
-    }
-    .note strong { color: var(--text); }
-
-    @media (min-width: 720px) {
-      .wrap { padding: 24px 20px 28px; }
-      .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-      .content { padding: 14px 14px 16px; gap: 10px; }
-      .thumb { padding: 10px; }
-      .btn { min-height: 42px; }
-      .note { padding: 12px 14px; }
+      font-size: 0.92rem;
+      line-height: 1.65;
     }
 
-    @media (max-width: 420px) {
-      .wrap { padding: 12px 10px 14px; }
-      .grid { gap: 8px; }
-      .thumb { aspect-ratio: 1 / 0.9; padding: 4px; }
-      .content { padding: 8px 8px 10px; gap: 5px; }
-      .title { min-height: 2.2em; }
-      .desc { min-height: 3.8em; -webkit-line-clamp: 2; }
-      .btn { min-height: 34px; border-radius: 9px; }
-      .note { margin-top: 10px; padding: 8px 10px; font-size: .76rem; }
+    @media (max-width: 980px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { padding: 12px 10px 20px; }
+      .hero { padding-bottom: 10px; }
+      .grid { grid-template-columns: 1fr; gap: 12px; }
+      .content { padding: 11px 11px 12px; }
+      .desc { min-height: auto; }
+      .btn { padding: 10px 12px; }
     }
   </style>
 </head>
 <body>
   <main class="wrap">
-    <header class="hero">
-      <h1>【村上組】点検表リンク集</h1>
-      <p class="lead">各機器の画像を押すと、点検表ページに移動します。</p>
-    </header>
-    
-    <section class="grid">
-      <a class="card" href="https://www.arch-dx.com/stock2/inspection/record/start/3fe99b4f-28ef-4bf6-9d6a-03b81efb4cbc" target="_blank" rel="noopener noreferrer">
-        <div class="thumb">
-          <img src="images/high_washer.png" alt="ハイウォッシャー（コールドボックス）" loading="lazy">
-        </div>
+    <section class="hero">
+      <h1>点検記録リンク集</h1>
+      <p>各点検表ページを自動で読み取り、点検状況を「点検未」「点検済」「非稼働」で表示します。</p>
+    </section>
+
+    <section class="grid" id="linkGrid">
+      <a class="card" href="https://www.arch-dx.com/stock2/inspection/record/start/3fe99b4f-28ef-4bf6-9d6a-03b81efb4cbc" target="_blank" rel="noopener noreferrer" data-url="https://www.arch-dx.com/stock2/inspection/record/start/3fe99b4f-28ef-4bf6-9d6a-03b81efb4cbc">
+        <div class="thumb"><img src="images/high_washer.png" alt="ハイウォッシャー（コールドボックス）"></div>
         <div class="content">
-          <h2 class="title">ハイウォッシャー（コールドボックス）</h2>
-          <p class="desc">コールドボックス高圧洗浄機の点検表ページです。</p>
-          <span class="btn">点検表を開く</span>
+          <div class="topline">
+            <h2 class="title">ハイウォッシャー（コールドボックス）</h2>
+            <span class="status is-loading" data-status>取得中</span>
+          </div>
+          <p class="desc">コールドボックス対応の高圧洗浄機です。</p>
+          <span class="btn">点検記録を開く</span>
         </div>
       </a>
 
-      <a class="card" href="https://www.arch-dx.com/stock2/inspection/record/start/1a34ffca-e570-4de8-82f3-af0476daf83f" target="_blank" rel="noopener noreferrer">
-        <div class="thumb">
-          <img src="images/welding.png" alt="溶接機No.3" loading="lazy">
-        </div>
+      <a class="card" href="https://www.arch-dx.com/stock2/inspection/record/start/1a34ffca-e570-4de8-82f3-af0476daf83f" target="_blank" rel="noopener noreferrer" data-url="https://www.arch-dx.com/stock2/inspection/record/start/1a34ffca-e570-4de8-82f3-af0476daf83f">
+        <div class="thumb"><img src="images/welding.png" alt="溶接機No.3"></div>
         <div class="content">
-          <h2 class="title">溶接機No.3</h2>
-          <p class="desc">エンジン式溶接機の点検表ページです。</p>
-          <span class="btn">点検表を開く</span>
+          <div class="topline">
+            <h2 class="title">溶接機No.3</h2>
+            <span class="status is-loading" data-status>取得中</span>
+          </div>
+          <p class="desc">エンジン式の溶接機です。</p>
+          <span class="btn">点検記録を開く</span>
         </div>
       </a>
 
-      <a class="card" href="https://www.arch-dx.com/stock2/inspection/record/start/b2e83a51-fb7c-4395-aab9-3c20ce87abe9" target="_blank" rel="noopener noreferrer">
-        <div class="thumb">
-          <img src="images/terasuta.png" alt="テラスター用No.3" loading="lazy">
-        </div>
+      <a class="card" href="https://www.arch-dx.com/stock2/inspection/record/start/b2e83a51-fb7c-4395-aab9-3c20ce87abe9" target="_blank" rel="noopener noreferrer" data-url="https://www.arch-dx.com/stock2/inspection/record/start/b2e83a51-fb7c-4395-aab9-3c20ce87abe9">
+        <div class="thumb"><img src="images/terasuta.png" alt="テラスター用No.3"></div>
         <div class="content">
-          <h2 class="title">テラスター用No.3</h2>
-          <p class="desc">テラスター（照明機）No.3用の点検表ページです。</p>
-          <span class="btn">点検表を開く</span>
+          <div class="topline">
+            <h2 class="title">テラスター用No.3</h2>
+            <span class="status is-loading" data-status>取得中</span>
+          </div>
+          <p class="desc">テラスター（照明機）用のNo.3点検記録ページです。</p>
+          <span class="btn">点検記録を開く</span>
         </div>
       </a>
 
-      <a class="card" href="https://www.arch-dx.com/stock2/inspection/record/start/ff0a1a04-87ba-4406-97ae-24b6b1637fec" target="_blank" rel="noopener noreferrer">
-        <div class="thumb">
-          <img src="images/terasuta.png" alt="テラスター用No.4" loading="lazy">
-        </div>
+      <a class="card" href="https://www.arch-dx.com/stock2/inspection/record/start/ff0a1a04-87ba-4406-97ae-24b6b1637fec" target="_blank" rel="noopener noreferrer" data-url="https://www.arch-dx.com/stock2/inspection/record/start/ff0a1a04-87ba-4406-97ae-24b6b1637fec">
+        <div class="thumb"><img src="images/terasuta_no4.png" alt="テラスター用No.4"></div>
         <div class="content">
-          <h2 class="title">テラスター用No.4</h2>
-          <p class="desc">テラスター（照明機）No.4用の点検表ページです。</p>
-          <span class="btn">点検表を開く</span>
+          <div class="topline">
+            <h2 class="title">テラスター用No.4</h2>
+            <span class="status is-loading" data-status>取得中</span>
+          </div>
+          <p class="desc">テラスター（照明機）用のNo.4点検記録ページです。</p>
+          <span class="btn">点検記録を開く</span>
         </div>
       </a>
 
-      <a class="card" href="https://www.arch-dx.com/stock2/inspection/record/start/64c856b1-69c8-431c-be89-227cf2046e35" target="_blank" rel="noopener noreferrer">
-        <div class="thumb">
-          <img src="images/25kva.png" alt="25kVA（コールドボックス）" loading="lazy">
-        </div>
+      <a class="card" href="https://www.arch-dx.com/stock2/inspection/record/start/64c856b1-69c8-431c-be89-227cf2046e35" target="_blank" rel="noopener noreferrer" data-url="https://www.arch-dx.com/stock2/inspection/record/start/64c856b1-69c8-431c-be89-227cf2046e35">
+        <div class="thumb"><img src="images/25kva.png" alt="25kVA（コールドボックス）"></div>
         <div class="content">
-          <h2 class="title">25kVA（コールドボックス）</h2>
-          <p class="desc">コールドボックス25kVA発電機用の点検表ページですです。</p>
-          <span class="btn">点検表を開く</span>
+          <div class="topline">
+            <h2 class="title">25kVA（コールドボックス）</h2>
+            <span class="status is-loading" data-status>取得中</span>
+          </div>
+          <p class="desc">コールドボックス対応の25kVA発電機です。</p>
+          <span class="btn">点検記録を開く</span>
         </div>
       </a>
 
-      <a class="card" href="https://www.arch-dx.com/stock2/inspection/record/start/68c51055-88fb-461a-a2d6-f9ecc7f78143" target="_blank" rel="noopener noreferrer">
-        <div class="thumb">
-          <img src="images/jiyama.png" alt="コールドボックス地山点検表" loading="lazy">
-        </div>
+      <a class="card" href="https://www.arch-dx.com/stock2/inspection/record/start/68c51055-88fb-461a-a2d6-f9ecc7f78143" target="_blank" rel="noopener noreferrer" data-url="https://www.arch-dx.com/stock2/inspection/record/start/68c51055-88fb-461a-a2d6-f9ecc7f78143">
+        <div class="thumb"><img src="images/jiyama.png" alt="コールドボックス地山点検表"></div>
         <div class="content">
-          <h2 class="title">コールドボックス地山点検表</h2>
-          <p class="desc">コールドボックス工法における地山点検表のページです。</p>
-          <span class="btn">点検表を開く</span>
+          <div class="topline">
+            <h2 class="title">コールドボックス地山点検表</h2>
+            <span class="status is-loading" data-status>取得中</span>
+          </div>
+          <p class="desc">コールドボックス工法における地山点検表の記録ページです。</p>
+          <span class="btn">点検記録を開く</span>
         </div>
       </a>
     </section>
 
-    <div class="note">
-      <strong>使い方：</strong> 画像または「点検記録を開く」を押すと、各記録ページへ移動します。スマホでは見やすいように文字と余白を小さめに調整しています。
-    </div>
+    <section class="footnote">
+      <strong>表示ルール</strong><br />
+      取得したページ本文に「非稼働」が含まれる場合は「非稼働」、それ以外で「点検済」が含まれる場合は「点検済」、それ以外は「点検未」として表示します。<br />
+      もし外部サイト側の制約で直接読み取りできない場合は、取得方法を proxy 経由に切り替える形に変更できます。
+    </section>
   </main>
+
+  <script>
+    async function fetchStatus(url) {
+      try {
+        const res = await fetch(url, { method: 'GET', credentials: 'omit' });
+        const text = await res.text();
+        const bodyText = text.replace(/<script[\s\S]*?<\/script>/gi, ' ')
+                              .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+                              .replace(/<[^>]+>/g, ' ')
+                              .replace(/&nbsp;/g, ' ')
+                              .replace(/\s+/g, ' ')
+                              .trim();
+
+        const explicit = bodyText.match(/(\d{1,2}月\d{1,2}日)[:：]\s*(非稼働|点検済|点検未)/);
+        if (explicit) return explicit[2];
+
+        if (bodyText.includes('非稼働')) return '非稼働';
+        if (bodyText.includes('点検済')) return '点検済';
+        return '点検未';
+      } catch (e) {
+        return '点検未';
+      }
+    }
+
+    function setStatusBadge(el, status) {
+      el.textContent = status;
+      el.classList.remove('is-loading', 'is-pending', 'is-done', 'is-stop');
+      if (status === '点検済') {
+        el.classList.add('is-done');
+      } else if (status === '非稼働') {
+        el.classList.add('is-stop');
+      } else {
+        el.classList.add('is-pending');
+      }
+    }
+
+    document.querySelectorAll('[data-url]').forEach(async (card) => {
+      const badge = card.querySelector('[data-status]');
+      const url = card.getAttribute('data-url');
+      const status = await fetchStatus(url);
+      setStatusBadge(badge, status);
+    });
+  </script>
 </body>
 </html>
